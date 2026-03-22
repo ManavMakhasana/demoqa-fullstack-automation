@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@api/*": ["api-utils/*"],
+      "@fixtures/*": ["fixtures/*"],
+      "@pages/*": ["page-objects/*"]
+    }
+  },
+  "include": ["**/*.ts"]
+}
