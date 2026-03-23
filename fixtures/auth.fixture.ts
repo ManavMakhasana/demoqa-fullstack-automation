@@ -1,4 +1,4 @@
-import { test as base} from '@playwright/test';
+import { test as base } from '@playwright/test';
 import { generateAuthToken } from '@api/login.api';
 
 export const test = base.extend({
@@ -23,8 +23,15 @@ export const test = base.extend({
                 domain: 'demoqa.com',
                 path: '/'
             },
+            {
+                name: 'expires',
+                value: authData.expires,
+                domain: 'demoqa.com',
+                path: '/'
+            }
         ]);
         await use(context);
     }
 });
 
+export { expect } from '@playwright/test';
