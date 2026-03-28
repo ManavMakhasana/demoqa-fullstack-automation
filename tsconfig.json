@@ -4,6 +4,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "strict": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -11,7 +12,8 @@
     "paths": {
       "@api/*": ["api-utils/*"],
       "@fixtures/*": ["fixtures/*"],
-      "@pages/*": ["page-objects/*"]
+      "@pages/*": ["page-objects/*"],
+      "@test-data/*": ["test-data/*"]
     }
   },
   "include": ["**/*.ts"]
