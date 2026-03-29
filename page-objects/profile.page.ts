@@ -19,8 +19,16 @@ export class ProfilePage {
         await expect(this.usernameValue).toBeVisible();
     } 
 
-    async assertBook(bookTitle: string) {
+    async assertBook(bookTitle: string) :Promise<void> {
         await this.searchInput.fill(bookTitle);
         await expect(this.page.locator(`span[id='see-book-${bookTitle}']`)).toBeVisible();
+    }
+
+    async deleteBook(bookTitle: string) :Promise<void> {
+        await this.page.getByRole("row", {name : bookTitle}).locator("[title='Delete']").click();
+        const dialogEvent = this.page.waitForEvent("dialog");
+        await this.page.locator('#closeSmallModal-ok').click();
+        const dialog = await dialogEvent;
+        await dialog.accept();
     }
 }
