@@ -1,7 +1,22 @@
 import { test as base } from '@playwright/test';
 import { generateAuthToken } from '@api/login.api';
 
-export const test = base.extend({
+type AuthFixtures = {
+    authData: {
+        token: string;
+        userId: string;
+        userName: string;
+        expires: string;
+    };
+};
+
+export const test = base.extend<AuthFixtures>({
+
+    authData: async ({ request }, use) => {
+        const data = await generateAuthToken(request);
+        await use(data);
+    },
+
     context: async ({request, context}, use) => {
         const authData = await generateAuthToken(request);
         await context.addCookies([
