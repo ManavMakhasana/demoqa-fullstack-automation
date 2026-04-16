@@ -1,5 +1,14 @@
 [
-    "Learning JavaScript Design Patterns",
-    "Git Pocket Guide",
-    "Programming JavaScript Applications"
+    {
+    "title": "Git Pocket Guide",
+    "isbn": "9781449325862"
+    },
+    {
+    "title": "Learning JavaScript Design Patterns",
+    "isbn": "9781449331818"
+    },
+    {
+    "title": "Designing Evolvable Web APIs with ASP.NET",
+    "isbn": "9781449337711"
+    }
 ]

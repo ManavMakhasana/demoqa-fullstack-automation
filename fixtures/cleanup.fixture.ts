@@ -1,19 +1,29 @@
 import { test as base } from '@playwright/test';
-import { ProfilePage } from '@pages/profile.page';
 
 type CleanUpFixture = {
-    cleanUp : { booksToDelete: string[] };
-}
+    cleanUp: { booksToDelete: string[] };
+};
 
-export const cleanUpTest = base.extend<CleanUpFixture>({
-    cleanUp : async ({ page }, use) => {
-        const listOfBooksToDelete = { booksToDelete: [] as string[] };
-        await use(listOfBooksToDelete);
-        if(listOfBooksToDelete.booksToDelete.length > 0) {
-            const profilePage = new ProfilePage(page);
-            await profilePage.navigateToProfile();
-            for(const book of listOfBooksToDelete.booksToDelete) {
-                await profilePage.deleteBook(book);
+type AuthDependencies = {
+    authData: { token: string; userId: string };
+};
+
+export const cleanUpTest = base.extend<CleanUpFixture & AuthDependencies>({
+        cleanUp: async ({ request, authData }, use) => {
+        const registry = { booksToDelete: [] as string[] };
+        await use(registry);    
+        if (registry.booksToDelete.length > 0) {
+            for (const isbn of registry.booksToDelete) {
+                await request.delete(`${process.env.BASE_URL}/BookStore/v1/Book`, {
+                    headers: {
+                        'Authorization': `Bearer ${authData.token}`,
+                        'Accept': 'application/json'
+                    },
+                    data: {
+                        userId: authData.userId,
+                        isbn: isbn
+                    }
+                });
             }
         }
     }
