@@ -18,7 +18,7 @@ A professional, high-performance hybrid (UI/API) test automation framework built
 
 ## Test Report
 
-`![Playwright HTML Report](assets/playwright-report.png)`
+![Playwright HTML Report](assets/playwright-report.png)
 
 ---
 
